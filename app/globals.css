@@ -1,0 +1,25 @@
+:root {
+  /* variables to be declared */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* variables to be declared */
+  }
+  html {
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow-x: hidden;
+}
