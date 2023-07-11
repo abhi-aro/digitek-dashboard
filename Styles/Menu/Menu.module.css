@@ -17,6 +17,20 @@
 
 .item {
   padding: 20px;
+  cursor: pointer;
   border-radius: 8px;
-  background-color: #3e3f4b;
+  background-color: rgb(63, 64, 75);
+  transition-duration: 0.3s;
+}
+
+.item:hover {
+  background-color: rgb(42, 43, 54);
+}
+
+.selectedItem {
+  background-color: rgb(32, 33, 35);
+}
+
+.selectedItem:hover {
+  background-color: rgb(32, 33, 35);
 }

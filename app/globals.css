@@ -23,3 +23,21 @@ body {
   max-height: 100vh;
   overflow-x: hidden;
 }
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+.layoutWrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 50px;
+  width: 100dvw;
+  height: 100dvh;
+}
+
+.layoutContent {
+  flex: 2;
+}

@@ -1,5 +1,4 @@
 .container {
-  flex: 2;
   height: 100%;
   overflow: scroll;
   border-radius: 12px;
@@ -16,6 +15,11 @@
 .feedWrapper {
   height: 70%;
   display: flex;
+}
+
+.tempVideo {
+  height: 100%;
+  width: 100%;
 }
 
 .header {
