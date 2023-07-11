@@ -18,6 +18,7 @@ const Menu = () => {
     { text: "Promote My Service", link: "/promote" },
     { text: "My Assistant", link: "/assistant" },
     { text: "My Integrations", link: "/integrations" },
+    { text: "Signout", link: "/api/auth/signout"}
   ];
   return (
     <div className={Styles.container}>

@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "@/Styles/Services/Services.module.css";
+import Styles from "../../Styles/Services/Services.module.css";
 import { v4 as uuidv4 } from "uuid";
 
 const Services = () => {

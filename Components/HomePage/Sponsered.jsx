@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "@/Styles/HomePage/Index.module.css";
+import Styles from "../../Styles/HomePage/Index.module.css";
 
 const Sponsered = () => {
   return (
