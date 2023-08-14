@@ -30,9 +30,9 @@ const Services = () => {
   );
 };
 
-const ServiceItem = ({ key, data }) => {
+const ServiceItem = ({ data }) => {
   return (
-    <div key={key} className={Styles.item}>
+    <div key={uuidv4()} className={Styles.item}>
       {data}
     </div>
   );

@@ -1,0 +1,97 @@
+.menuWrapper {
+  display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  .container {
+    justify-content: unset;
+    gap: 0px;
+    padding: 0px;
+    border-radius: 0px;
+  }
+
+  .menuWrapper {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .menuClosed {
+    position: fixed;
+    top: 0px;
+    left: -300px;
+    z-index: 1;
+    height: 100%;
+    width: 300px;
+    transition-duration: 0.3s;
+    padding-top: 50px;
+    box-shadow: 0 5px 20px rgb(0 0 0 / 10%);
+    display: block;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .menuOpened {
+    left: 0px;
+  }
+
+  .servicesClosed {
+    background-color: #343540;
+    position: fixed;
+    top: 0px;
+    right: -300px;
+    z-index: 1;
+    height: 100%;
+    width: 300px;
+    transition-duration: 0.3s;
+    padding-top: 50px;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .servicesOpened {
+    right: 0px;
+  }
+
+  .iconContainer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 4px;
+    z-index: 2;
+  }
+
+  .menuIcon {
+    left: 20px;
+  }
+
+  .serviceIcon {
+    right: 20px;
+  }
+
+  .iconLine {
+    height: 0px;
+    width: 28px;
+    border-radius: 10px;
+    border: 2px solid black;
+    transition-duration: 0.3s;
+  }
+
+  .iconContainer.opened :nth-child(1) {
+    transform: rotateZ(45deg) translate(5.5px, 5.5px);
+    transition-duration: 0.3s;
+  }
+  .iconContainer.opened :nth-child(2) {
+    opacity: 0;
+    transition-duration: 0.3s;
+  }
+  .iconContainer.opened :nth-child(3) {
+    transform: rotateZ(-45deg) translate(5.5px, -5.5px);
+    transition-duration: 0.3s;
+  }
+}

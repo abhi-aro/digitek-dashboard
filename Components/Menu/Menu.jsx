@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Styles from "../../Styles/Menu/Menu.module.css";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
+import { usePathname } from "next/navigation";
 
 const Menu = () => {
   const menuData = [
@@ -18,12 +19,12 @@ const Menu = () => {
     { text: "Promote My Service", link: "/promote" },
     { text: "My Assistant", link: "/assistant" },
     { text: "My Integrations", link: "/integrations" },
-    { text: "Signout", link: "/api/auth/signout"}
+    { text: "Signout", link: "/api/auth/signout" },
   ];
   return (
     <div className={Styles.container}>
       {menuData.map((item, ind) => {
-        return <MenuItem data={item} />;
+        return <MenuItem key={uuidv4()} data={item} />;
       })}
     </div>
   );

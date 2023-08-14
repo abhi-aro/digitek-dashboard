@@ -95,3 +95,12 @@
   border-radius: 16px;
   background-color: #454753;
 }
+
+@media only screen and (max-width: 750px) {
+  .container {
+    justify-content: unset;
+    gap: 0px;
+    padding: 0px;
+    border-radius: 0px;
+  }
+}

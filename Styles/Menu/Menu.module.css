@@ -1,5 +1,4 @@
 .container {
-  flex: 1;
   height: 100%;
   overflow: scroll;
   padding: 20px;
@@ -33,4 +32,10 @@
 
 .selectedItem:hover {
   background-color: rgb(32, 33, 35);
+}
+
+@media only screen and (max-width: 750px) {
+  .container {
+    border-radius: 0px;
+  }
 }

@@ -38,6 +38,25 @@ a {
   height: 100dvh;
 }
 
+.layoutMenu {
+  flex: 1;
+}
+
+.layoutServices {
+  flex: 1;
+}
+
 .layoutContent {
   flex: 2;
+}
+
+@media only screen and (max-width: 750px) {
+  .layoutWrapper {
+    padding: 0px;
+  }
+
+  .layoutMenu, .layoutServices {
+    display: none;
+  }
+
 }
