@@ -11,7 +11,7 @@ const HomePage = async () => {
     data: { email: session?.user?.email },
   });
   if (response?.data?.body?.stage == 0) {
-    redirect("/account");
+    redirect("/formData");
   }
   return (
     <>
