@@ -40,6 +40,7 @@ export const options: NextAuthOptions = {
   callbacks: {
     async signIn(params) {
       const response = await api_CreateUser({ data: params.profile });
+      console.debug(response)
       return response?.data?.body?.success;
     },
   },
