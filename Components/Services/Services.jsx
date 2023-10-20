@@ -1,147 +1,135 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "../../Styles/Services/Services.module.css";
 import { v4 as uuidv4 } from "uuid";
+import { api_fetchService } from "../../app/api/Communication";
+
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  height: 400,
+  // bgcolor: "rgb(63, 64, 75)",
+  // border: "2px solid rgb(63, 64, 75)",
+  boxShadow: 24,
+  outline: 0,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
 
 const Services = () => {
-  const [paymentModal, setPaymentModal] = useState(false);
+  const [serviceData, setServiceData] = useState({});
+  const [serviceL1, setServiceL1] = useState([]);
+  const [serviceModal, setServiceModal] = useState(false);
+  const [valueL1, setValue1] = useState("");
+  const [valueL2, setValue2] = useState("");
 
-  const servicesData = [
-    "SEO",
-    "SEM",
-    "SMM",
-    "HRMS",
-    "Website & More",
-    "Content Creation",
-    "Creative & More",
-    "Influencer Marketing",
-    "Business Incorporation",
-    "Taxation",
-    "Accounts Management",
-    "Investments & More",
-    "Application Development",
-  ];
+  const handleProceedToTimeSelection = ({ value1, value2 }) => {
+    if (value1 === "" || value2 === "") return;
+    setValue1(value1);
+    setValue2(value2);
+    setServiceModal(true);
+  };
+
+  const fetchData = async () => {
+    let data = await api_fetchService();
+    setServiceData(data?.data?.body);
+    let keys = Object.keys(data?.data?.body);
+    setServiceL1(keys);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleCloseModal = () => {
+    setServiceModal(false);
+  };
+
   return (
     <>
-      <PaymentModal
-        paymentModal={paymentModal}
-        setPaymentModal={setPaymentModal}
-      />
       <div className={Styles.wrapper}>
         <div className={Styles.header}>Services</div>
         <div className={Styles.container}>
-          {servicesData.map((item, ind) => {
-            return (
-              <ServiceItem
-                key={uuidv4()}
-                data={item}
-                setPaymentModal={setPaymentModal}
-              />
-            );
-          })}
+          {serviceL1?.map((ele) => (
+            <Accordion style={{}}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                style={{
+                  background: "rgb(63, 64, 75)",
+                  color: "white",
+                  outline: "0px",
+                  border: "1px solid #343540",
+                }}
+              >
+                <Typography>{ele}</Typography>
+              </AccordionSummary>
+              <AccordionDetails className={Styles.accodianMain}>
+                {serviceData[ele]?.map((data) => (
+                  <div
+                    onClick={() =>
+                      handleProceedToTimeSelection({
+                        value1: ele,
+                        value2: data,
+                      })
+                    }
+                    className={Styles.eachElement}
+                  >
+                    {data}
+                  </div>
+                ))}
+              </AccordionDetails>
+            </Accordion>
+          ))}
         </div>
       </div>
-    </>
-  );
-};
-
-const ServiceItem = ({ data, setPaymentModal }) => {
-  const askForPayment = () => {
-    setPaymentModal(true);
-  };
-
-  return (
-    <div key={uuidv4()} className={Styles.item} onClick={askForPayment}>
-      {data}
-    </div>
-  );
-};
-
-const PaymentModal = ({ paymentModal, setPaymentModal }) => {
-  const [paid, setPaid] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState("");
-
-  const closeModal = () => {
-    setPaymentModal(false);
-  };
-
-  const paymentRedirect = (e) => {
-    e.stopPropagation();
-    setPaid(true);
-    setPaymentStatus("Payment Successful");
-    setTimeout(() => {
-      setPaymentStatus("Redirecting to {INVALID SITE}");
-    }, 2000);
-    setTimeout(() => {
-      setPaymentStatus("JK 😁");
-    }, 3000);
-    setTimeout(() => {
-      setPaymentStatus("Redirecting to UV desk");
-      window.location.href =
-        "http://service.digitekservice.com/helpdesk-project/public/en/member/login";
-    }, 4000);
-  };
-
-  return paymentModal == false ? (
-    <></>
-  ) : (
-    <div
-      style={{
-        position: "absolute",
-        top: "0px",
-        left: "0px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100dvh",
-        width: "100dvw",
-        background: "rgba(0,0,0, 0.5)",
-      }}
-      onClick={closeModal}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          maxHeight: "40vh",
-          width: "100%",
-          maxWidth: "40vw",
-          background: "#343540",
-          borderRadius: "12px",
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {paid == true ? (
-          <>
-            <div
-              style={{
-                padding: "20px",
-                background: "rgba(75,181,67, 0.8)",
-                borderRadius: "12px",
-                cursor: "pointer",
-              }}
-            >
-              {paymentStatus}
+      <div className={Styles.modalTop}>
+        <Modal
+          open={serviceModal}
+          onClose={handleCloseModal}
+          aria-labelledby="child-modal-title"
+          aria-describedby="child-modal-description"
+        >
+          <Box sx={{ ...style, width: "100%" }}>
+            <div className={Styles.modalContainer}>
+              <div className={Styles.closeIcon}>
+                <HighlightOffIcon onClick={handleCloseModal} />
+              </div>
+              <div className={Styles.valueContainer}>
+                <span>{valueL1}</span>
+                <span>{">"}</span>
+                <span>{valueL2}</span>
+              </div>
+              <div className={Styles.buttonIcon}>
+                <div className={Styles.timeButton}>
+                  <span>Time Less then </span>
+                  <span>8 Hours</span>
+                </div>
+                <div className={Styles.timeButton}>
+                  <span>Time More then </span>
+                  <span>8 Hours</span>
+                </div>
+              </div>
             </div>
-          </>
-        ) : (
-          <div
-            style={{
-              padding: "20px",
-              background: "rgba(0,0,0,.5)",
-              borderRadius: "12px",
-              cursor: "pointer",
-            }}
-            onClick={paymentRedirect}
-          >
-            Click me to pay
-          </div>
-        )}
+          </Box>
+        </Modal>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import { postApi } from "./apiCalls";
+import { getApi, postApi } from "./apiCalls";
 
 export async function api_SendMail({ data }) {
   let url =
@@ -13,4 +13,12 @@ export async function api_SendMail({ data }) {
   });
 
   return postApi(url, body, headers);
+}
+
+export async function api_fetchService() {
+  let url =
+    "https://5hsg496kki.execute-api.ap-south-1.amazonaws.com/prod/service_domains";
+  let headers = {};
+
+  return getApi(url, headers);
 }
