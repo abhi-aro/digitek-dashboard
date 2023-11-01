@@ -1,0 +1,220 @@
+.mainContainer {
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  height: 90vh;
+  border-radius: 12px;
+  background-color: #343540;
+}
+
+.headingName {
+  text-align: center;
+  font-size: 16px;
+  color: #343540;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  background-color: #cacaca;
+  height: 5vh;
+  border-radius: 12px 12px 0px 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.providerSection {
+  height: 90vh;
+  width: 48%;
+  border-radius: 12px;
+  background-color: #343540;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputBox {
+  background-color: transparent;
+  width: 90%;
+  height: 40px;
+  border: 1px solid white;
+  font-size: 14px;
+}
+
+.formInputCOntainer {
+  width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.formInputCOntainer::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+.formInputCOntainer::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 50px;
+}
+
+.formInputCOntainer::-webkit-scrollbar-thumb {
+  background-color: #acacac;
+  border-radius: 100px;
+}
+
+.submitButton {
+  background-color: rgb(137, 137, 137);
+  width: 100px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 40px !important;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+
+.serviceProviderSelector {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  text-transform: uppercase;
+  font-size: 500;
+}
+
+.textActive {
+  border: 2px solid rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+.normalText {
+  border: 2px solid rgb(48, 48, 48);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.companySizeCont {
+  display: flex;
+  width: 100%;
+  padding-left: 5%;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.companySizeCont2 {
+  padding-top: 10px;
+  display: flex;
+  width: 100%;
+  padding-left: 5%;
+  gap: 23px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.companySizeBUtton {
+  width: 50%;
+  background-color: transparent;
+  color: white;
+}
+.companySizeBUtton:hover {
+  width: 50%;
+  background-color: transparent;
+  color: white;
+}
+
+.selectOptions {
+  height: 35px;
+  color: white;
+  width: 50%;
+  border: 1px solid white;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.utilityContainer {
+  padding: 20px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.eachElement {
+  width: 100%;
+  background-color: #343540;
+  color: white;
+  padding: 10px 20px;
+}
+
+.selectedElements {
+  padding: 10px;
+  background-color: #272727;
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.utilityMain {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 750px) {
+  .mainContainer {
+    height: 100vh;
+  }
+  .formInputCOntainer {
+    padding-top: 100px;
+  }
+  .serviceProviderSelector {
+    padding-top: 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .companySizeCont {
+    flex-direction: column;
+  }
+  .companySizeBUtton {
+    width: 90%;
+  }
+
+  .companySizeCont2 {
+    flex-direction: column;
+  }
+  .selectOptions {
+    width: 90%;
+  }
+}

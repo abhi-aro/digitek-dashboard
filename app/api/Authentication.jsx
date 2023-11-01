@@ -38,6 +38,7 @@ export async function api_UpdateUser({ data }) {
     yearly_revenue: data?.yearly_revenue || "",
     purpose_of_utility: data?.purpose_of_utility || [],
     email: data?.email || "",
+    registration_code: data?.registration_code || "",
   });
   return postApi(url, body, headers);
 }

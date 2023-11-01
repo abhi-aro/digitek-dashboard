@@ -51,13 +51,38 @@ a {
   flex: 2;
 }
 
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #c5c5c5;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  border-radius: 4px;
+}
+
+input:focus {
+  border: 1px solid #555;
+}
+
+::placeholder {
+  color: rgb(193, 193, 193);
+  opacity: 1;
+}
+
+::-ms-input-placeholder {
+  color: rgb(193, 193, 193);
+}
+
 @media only screen and (max-width: 750px) {
   .layoutWrapper {
     padding: 0px;
   }
 
-  .layoutMenu, .layoutServices {
+  .layoutMenu,
+  .layoutServices {
     display: none;
   }
-
 }

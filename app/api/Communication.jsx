@@ -22,3 +22,17 @@ export async function api_fetchService() {
 
   return getApi(url, headers);
 }
+
+export async function api_fetchUtility() {
+  let url =
+    "https://q68elgriue.execute-api.ap-south-1.amazonaws.com/prod/service";
+  let headers = {};
+
+  return getApi(url, headers);
+}
+export async function api_CompanySize() {
+  let url = "https://q68elgriue.execute-api.ap-south-1.amazonaws.com/prod/company_size"
+  let headers = {};
+
+  return getApi(url, headers);
+}
