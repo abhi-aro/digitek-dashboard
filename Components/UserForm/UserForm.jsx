@@ -40,15 +40,6 @@ const UserForm = ({ data, router }) => {
   );
 };
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  // left: "37%",
-  transform: "translate(-50%, -50%)",
-  border: "2px solid #000",
-  boxShadow: 24,
-};
-
 const FormInput1 = ({ router, selectedType }) => {
   const [pNumber, setPNumber] = useState("");
   const [countryCode, setCOuntryCode] = useState("+91");
