@@ -173,7 +173,10 @@ const FormInput1 = ({ router, selectedType }) => {
       <div className={Styles.companySizeCont}>
         <div>Company Size :</div>
         <Dropdown>
-          <MenuButton className={Styles.companySizeBUtton}>
+          <MenuButton
+            style={{ color: "white" }}
+            className={Styles.companySizeBUtton}
+          >
             {companySize || "Microenterprise (1-9 employees)"}
           </MenuButton>
           <Menu>
