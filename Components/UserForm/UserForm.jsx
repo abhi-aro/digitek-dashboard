@@ -8,6 +8,8 @@ import MenuItem from "@mui/joy/MenuItem";
 import Dropdown from "@mui/joy/Dropdown";
 import { Drawer } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 
 const UserForm = ({ data, router }) => {
   const [selectedType, setSelectedType] = useState(0);
@@ -38,6 +40,15 @@ const UserForm = ({ data, router }) => {
   );
 };
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  // left: "37%",
+  transform: "translate(-50%, -50%)",
+  border: "2px solid #000",
+  boxShadow: 24,
+};
+
 const FormInput1 = ({ router, selectedType }) => {
   const [pNumber, setPNumber] = useState("");
   const [countryCode, setCOuntryCode] = useState("+91");
@@ -51,6 +62,7 @@ const FormInput1 = ({ router, selectedType }) => {
   const [curUtility, setCurUtility] = useState(false);
   const [show, setShow] = useState(false);
   const [utility, setUtility] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   const [suggest, setSuggest] = useState([]);
   const [size, setSize] = useState([]);
@@ -190,7 +202,7 @@ const FormInput1 = ({ router, selectedType }) => {
         <div>Select Utility :</div>
         <div
           className={Styles.selectOptions}
-          onClick={() => setCurUtility(true)}
+          onClick={() => setOpenModal(true)}
         >
           Please Select the options
         </div>
@@ -200,9 +212,6 @@ const FormInput1 = ({ router, selectedType }) => {
         <div className={Styles.utilityMain}>
           {utility?.map((ele) => (
             <div className={Styles.selectedElements}>
-              <span onClick={() => handleRemove(ele)}>
-                <CloseIcon style={{ fontSize: "14px" }} />
-              </span>
               <span>{ele}</span>
             </div>
           ))}
@@ -211,23 +220,100 @@ const FormInput1 = ({ router, selectedType }) => {
       <div onClick={handleSubmit} className={Styles.submitButton}>
         Submit
       </div>
-      <Drawer
-        anchor={"bottom"}
-        open={curUtility}
-        onClose={() => setCurUtility(false)}
-      >
-        <div className={Styles.utilityContainer}>
-          {suggest?.map((ele) => (
-            <div
-              onClick={() => handleUtility(ele)}
-              className={Styles.eachElement}
-            >
-              {ele}
-            </div>
-          ))}
-        </div>
-      </Drawer>
+
+      {openModal && suggest.length > 0 && (
+        <ModalArea
+          suggest={suggest}
+          setUtility={setUtility}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        />
+      )}
     </div>
+  );
+};
+
+const ModalArea = ({ openModal, setOpenModal, suggest, setUtility }) => {
+  const [selected, setSelected] = useState([]);
+  const [searchRes, setSearchResult] = useState(suggest);
+  const [display, setDisplay] = useState(true);
+  const handleSearch = (data) => {
+    let searchData = suggest?.filter((d1) =>
+      d1.toLowerCase().includes(data.toLowerCase()),
+    );
+    setSearchResult(searchData);
+  };
+
+  const handleRemove = (ele) => {
+    const index = selected.indexOf(ele);
+    if (index > -1) {
+      selected.splice(index, 1);
+    }
+  };
+
+  const handleUtility = (ele) => {
+    if (selected.includes(ele)) {
+      setDisplay(true);
+      return;
+    }
+    setSelected((prev) => [...prev, ele]);
+    setDisplay(false);
+  };
+
+  const handleSubmit = () => {
+    setUtility(selected);
+    setOpenModal(false);
+  };
+
+  return (
+    <Modal
+      open={openModal}
+      onClose={() => setOpenModal(false)}
+      aria-labelledby="parent-modal-title"
+      aria-describedby="parent-modal-description"
+    >
+      <div className={Styles.modalMain}>
+        <div className={Styles.modalContainer}>
+          <div className={Styles.btnArea}>
+            <button className={Styles.cancelButton}>Cancel</button>
+          </div>
+          <div>
+            <input
+              type="text"
+              onClick={() => setDisplay(true)}
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+            {display ? (
+              <div className={Styles.searchResult}>
+                {(searchRes || suggest)?.map((ele) => (
+                  <div
+                    onClick={() => handleUtility(ele)}
+                    className={Styles.eachSearchElem}
+                  >
+                    {ele}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className={Styles.selectedContainer}>
+                {selected?.map((ele) => (
+                  <div className={Styles.displaySelected}>
+                    <span>{ele}</span>
+                    <CloseIcon
+                      onClick={() => handleRemove(ele)}
+                      style={{ fontSize: "12px" }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className={Styles.doneButton} onClick={handleSubmit}>
+            DONE
+          </div>
+        </div>
+      </div>
+    </Modal>
   );
 };
 

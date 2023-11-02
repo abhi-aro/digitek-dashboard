@@ -192,6 +192,80 @@
   flex-wrap: wrap;
 }
 
+.modalContainer {
+  margin: auto;
+  width: 50vw;
+  height: 60vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btnArea {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.cancelButton {
+  height: 30px;
+  width: 60px;
+  background-color: black;
+  color: white;
+  border: 0px;
+  border-radius: 4px;
+}
+
+.searchResult {
+  width: 80%;
+  margin: auto;
+  height: 200px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #cacaca;
+  padding: 10px;
+}
+
+.eachSearchElem {
+  background-color: rgb(58, 58, 58);
+  color: white;
+  padding: 5px;
+}
+.selectedContainer {
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.displaySelected {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgb(141, 141, 141);
+  color: white;
+  padding: 10px;
+}
+
+.doneButton {
+  text-align: center;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  background-color: rgb(63, 63, 63);
+  color: white;
+  border-radius: 8px;
+}
+
+.modalMain {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 750px) {
   .mainContainer {
     height: 100vh;
@@ -216,5 +290,15 @@
   }
   .selectOptions {
     width: 90%;
+  }
+  .modalContainer {
+    margin-left: 50%;
+    margin: auto;
+    width: 100vw;
+    height: 60vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }
