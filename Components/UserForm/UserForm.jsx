@@ -242,6 +242,10 @@ const ModalArea = ({ openModal, setOpenModal, suggest, setUtility }) => {
     }
   };
 
+  const closeModal = () => {
+    setOpenModal(false);
+  };
+
   const handleUtility = (ele) => {
     if (selected.includes(ele)) {
       setDisplay(true);
@@ -253,20 +257,22 @@ const ModalArea = ({ openModal, setOpenModal, suggest, setUtility }) => {
 
   const handleSubmit = () => {
     setUtility(selected);
-    setOpenModal(false);
+    closeModal();
   };
 
   return (
     <Modal
       open={openModal}
-      onClose={() => setOpenModal(false)}
+      onClose={closeModal}
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description"
     >
       <div className={Styles.modalMain}>
         <div className={Styles.modalContainer}>
           <div className={Styles.btnArea}>
-            <button className={Styles.cancelButton}>Cancel</button>
+            <button onClick={closeModal} className={Styles.cancelButton}>
+              Cancel
+            </button>
           </div>
           <div>
             <input
