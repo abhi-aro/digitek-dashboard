@@ -3,7 +3,10 @@
 import React, { useEffect, useState } from "react";
 import Styles from "../../Styles/Services/Services.module.css";
 import { v4 as uuidv4 } from "uuid";
-import { api_fetchService } from "../../app/api/Communication";
+import {
+  api_fetchService,
+  api_getAllocation,
+} from "../../app/api/Communication";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -13,6 +16,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { setSessionStorageData } from "../Session";
+import { useRouter } from "next/navigation";
 
 const style = {
   position: "absolute",
@@ -31,6 +36,7 @@ const style = {
 };
 
 const Services = () => {
+  const router = useRouter();
   const [serviceData, setServiceData] = useState({});
   const [serviceL1, setServiceL1] = useState([]);
   const [serviceModal, setServiceModal] = useState(false);
@@ -57,6 +63,21 @@ const Services = () => {
 
   const handleCloseModal = () => {
     setServiceModal(false);
+  };
+
+  const handleProceed = async (data) => {
+    let payload = {
+      top_funnel: valueL1,
+      top_funnels_domains: valueL2,
+      time: data,
+    };
+
+    let result = await api_getAllocation(payload);
+    if (result?.data?.body.length > 0) {
+      setSessionStorageData("availableAllocation", result?.data?.body);
+      handleCloseModal();
+      router.push(`/teamType/${valueL2}`);
+    }
   };
 
   return (
@@ -116,7 +137,10 @@ const Services = () => {
                 <span>{valueL2}</span>
               </div>
               <div className={Styles.buttonIcon}>
-                <div className={Styles.timeButton}>
+                <div
+                  onClick={() => handleProceed("8")}
+                  className={Styles.timeButton}
+                >
                   <span>Time Less then </span>
                   <span>8 Hours</span>
                 </div>

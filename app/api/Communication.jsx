@@ -31,8 +31,26 @@ export async function api_fetchUtility() {
   return getApi(url, headers);
 }
 export async function api_CompanySize() {
-  let url = "https://q68elgriue.execute-api.ap-south-1.amazonaws.com/prod/company_size"
+  let url =
+    "https://q68elgriue.execute-api.ap-south-1.amazonaws.com/prod/company_size";
   let headers = {};
 
   return getApi(url, headers);
+}
+
+export async function api_getAllocation({ data }) {
+  let url =
+    "https://a00jeyjdmj.execute-api.ap-south-1.amazonaws.com/prod/get_service_details_users";
+  let headers = {
+    "x-api-key": "0uOidSnt9l3mFrjeA0jpD7jdDNIf4eVHosNaL39d",
+    // Authorization: "I1Cg4SwS0RrePU2R5j9focUpIQBJ3gzh",
+    "Content-Type": "application/json",
+  };
+  let body = JSON.stringify({
+    top_funnel: "Digital Marketing",
+    top_funnels_domains: "SEM",
+    time: 8,
+  });
+
+  return postApi(url, body, headers);
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Styles from "../../Styles/FormData/UserForm.module.css";
-import { api_UpdateUser } from "../../app/api/Authentication";
+import { api_UpdateUser, api_UpdateUser2 } from "../../app/api/Authentication";
 import { api_CompanySize, api_fetchUtility } from "../../app/api/Communication";
 import Menu from "@mui/joy/Menu";
 import MenuButton from "@mui/joy/MenuButton";
@@ -59,29 +59,29 @@ const FormInput1 = ({ router, selectedType }) => {
   const [size, setSize] = useState([]);
 
   const handleSubmit = async () => {
+    let payload = {
+      user_type: selectedType,
+      country_code: countryCode,
+      mobile_no: pNumber,
+      company_name: cName,
+      company_domain: cType,
+      company_sub_domain: csType,
+      company_size: companySize,
+      registration_code: regCode,
+      yearly_revenue: revenue,
+      purpose_of_utility: utility,
+      email: email,
+    };
     if (selectedType === 0) {
-      let payload = {
-        user_type: selectedType,
-        country_code: countryCode,
-        mobile_no: pNumber,
-        company_name: cName,
-        company_domain: cType,
-        company_sub_domain: csType,
-        company_size: companySize,
-        registration_code: regCode,
-        yearly_revenue: revenue,
-        purpose_of_utility: utility,
-        email: email,
-      };
       const response = await api_UpdateUser({ data: payload });
       if (response?.data?.body?.stage === 1) {
         router.push("/businessMetricsForm");
       }
-      // if (formData.get("user_type") == 0) {
-      // } else if (formData.get("user_type") == 1) {
-      //   router.push("/");
-      // }
     } else {
+      const response = await api_UpdateUser2({ data: payload });
+      if (response?.data?.body?.stage === 1) {
+        router.push("/");
+      }
     }
   };
 
@@ -190,7 +190,7 @@ const FormInput1 = ({ router, selectedType }) => {
         </Dropdown>
       </div>
       <div className={Styles.companySizeCont2}>
-        <div>Select Utility :</div>
+        <div>Select {selectedType === 1 ? "Services" : "Utility"} :</div>
         <div
           className={Styles.selectOptions}
           onClick={() => setOpenModal(true)}

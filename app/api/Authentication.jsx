@@ -42,6 +42,29 @@ export async function api_UpdateUser({ data }) {
   });
   return postApi(url, body, headers);
 }
+export async function api_UpdateUser2({ data }) {
+  let url =
+    "https://q68elgriue.execute-api.ap-south-1.amazonaws.com/prod/basic_details_update";
+  let headers = {
+    "x-api-key": "0uOidSnt9l3mFrjeA0jpD7jdDNIf4eVHosNaL39d",
+    authorizationtoken: "I1Cg4SwS0RrePU2R5j9focUpIQBJ3gzh",
+    "Content-Type": "application/json",
+  };
+  let body = JSON.stringify({
+    user_type: data?.user_type || 0,
+    country_code: data?.country_code || "",
+    mobile_no: Number(data?.mobile_no) || "",
+    company_name: data?.company_name || "",
+    company_domain: data?.company_domain || "",
+    company_sub_domain: data?.company_sub_domain || "",
+    company_size: data?.company_size || "",
+    yearly_revenue: data?.yearly_revenue || "",
+    service: data?.purpose_of_utility || [],
+    email: data?.email || "",
+    registration_code: data?.registration_code || "",
+  });
+  return postApi(url, body, headers);
+}
 
 export async function api_BusinessMetricForm({ data }) {
   let url =

@@ -193,10 +193,11 @@
 }
 
 .modalContainer {
+  border-radius: 8px;
   margin: auto;
   width: 50vw;
   height: 60vh;
-  background-color: white;
+  background-color: rgb(155, 155, 155);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -292,11 +293,12 @@
     width: 90%;
   }
   .modalContainer {
+    border-radius: 8px;
     margin-left: 50%;
     margin: auto;
     width: 100vw;
     height: 60vh;
-    background-color: white;
+    background-color: rgb(155, 155, 155);
     display: flex;
     flex-direction: column;
     gap: 10px;
