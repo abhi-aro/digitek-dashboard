@@ -56,6 +56,7 @@ const FormInput1 = ({ router, selectedType }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const [suggest, setSuggest] = useState([]);
+  const [removed, setRemoved] = useState([]);
   const [size, setSize] = useState([]);
 
   const handleSubmit = async () => {
@@ -104,6 +105,12 @@ const FormInput1 = ({ router, selectedType }) => {
     setCompanySize(ele);
   };
   const handleUtility = (ele) => {
+    if (removed.includes(ele)) {
+      const index = removed.indexOf(ele);
+      if (index > -1) {
+        removed.splice(index, 1);
+      }
+    }
     if (utility.includes(ele)) {
       setCurUtility(false);
       return;
@@ -113,11 +120,11 @@ const FormInput1 = ({ router, selectedType }) => {
   };
 
   const handleRemove = (ele) => {
+    setRemoved((prev) => [...prev, ele]);
     const index = utility.indexOf(ele);
     if (index > -1) {
       utility.splice(index, 1);
     }
-    setUtility(utility);
   };
 
   return (
@@ -191,18 +198,31 @@ const FormInput1 = ({ router, selectedType }) => {
       </div>
       <div className={Styles.companySizeCont2}>
         <div>Select {selectedType === 1 ? "Services" : "Utility"} :</div>
-        <div
-          className={Styles.selectOptions}
-          onClick={() => setOpenModal(true)}
-        >
-          Please Select the options
-        </div>
+        <Dropdown>
+          <MenuButton
+            style={{ color: "white" }}
+            className={Styles.companySizeBUtton}
+          >
+            Please Select the options
+          </MenuButton>
+          <Menu sx={{ height: "400px", overflowY: "scroll" }}>
+            {suggest?.map((ele) => (
+              <MenuItem onClick={() => handleUtility(ele)}>{ele}</MenuItem>
+            ))}
+          </Menu>
+        </Dropdown>
       </div>
-      {show && suggest.length > 0 && <div></div>}
       {utility.length > 0 && (
         <div className={Styles.utilityMain}>
           {utility?.map((ele) => (
-            <div className={Styles.selectedElements}>
+            <div
+              className={
+                !removed.includes(ele)
+                  ? Styles.selectedElements
+                  : Styles.selectedElements2
+              }
+            >
+              <CloseIcon onClick={() => handleRemove(ele)} />
               <span>{ele}</span>
             </div>
           ))}
@@ -211,106 +231,7 @@ const FormInput1 = ({ router, selectedType }) => {
       <div onClick={handleSubmit} className={Styles.submitButton}>
         Submit
       </div>
-
-      {openModal && suggest.length > 0 && (
-        <ModalArea
-          suggest={suggest}
-          setUtility={setUtility}
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-        />
-      )}
     </div>
-  );
-};
-
-const ModalArea = ({ openModal, setOpenModal, suggest, setUtility }) => {
-  const [selected, setSelected] = useState([]);
-  const [searchRes, setSearchResult] = useState(suggest);
-  const [display, setDisplay] = useState(true);
-  const handleSearch = (data) => {
-    let searchData = suggest?.filter((d1) =>
-      d1.toLowerCase().includes(data.toLowerCase()),
-    );
-    setSearchResult(searchData);
-  };
-
-  const handleRemove = (ele) => {
-    const index = selected.indexOf(ele);
-    if (index > -1) {
-      selected.splice(index, 1);
-    }
-  };
-
-  const closeModal = () => {
-    setOpenModal(false);
-  };
-
-  const handleUtility = (ele) => {
-    if (selected.includes(ele)) {
-      setDisplay(true);
-      return;
-    }
-    setSelected((prev) => [...prev, ele]);
-    setDisplay(false);
-  };
-
-  const handleSubmit = () => {
-    setUtility(selected);
-    closeModal();
-  };
-
-  return (
-    <Modal
-      open={openModal}
-      onClose={closeModal}
-      aria-labelledby="parent-modal-title"
-      aria-describedby="parent-modal-description"
-    >
-      <div className={Styles.modalMain}>
-        <div className={Styles.modalContainer}>
-          <div className={Styles.btnArea}>
-            <button onClick={closeModal} className={Styles.cancelButton}>
-              Cancel
-            </button>
-          </div>
-          <div>
-            <input
-              type="text"
-              onClick={() => setDisplay(true)}
-              onChange={(e) => handleSearch(e.target.value)}
-            />
-            {display ? (
-              <div className={Styles.searchResult}>
-                {(searchRes || suggest)?.map((ele) => (
-                  <div
-                    onClick={() => handleUtility(ele)}
-                    className={Styles.eachSearchElem}
-                  >
-                    {ele}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className={Styles.selectedContainer}>
-                {selected?.map((ele) => (
-                  <div className={Styles.displaySelected}>
-                    <span>{ele}</span>
-                    <CloseIcon
-                      onClick={() => handleRemove(ele)}
-                      style={{ fontSize: "12px" }}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          <div className={Styles.doneButton} onClick={handleSubmit}>
-            DONE
-          </div>
-        </div>
-      </div>
-    </Modal>
   );
 };
 

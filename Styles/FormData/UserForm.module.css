@@ -183,6 +183,10 @@
   justify-content: center;
 }
 
+.selectedElements2 {
+  display: none;
+}
+
 .utilityMain {
   margin-top: 10px;
   display: flex;
