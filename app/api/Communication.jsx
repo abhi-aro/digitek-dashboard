@@ -47,8 +47,8 @@ export async function api_getAllocation({ data }) {
     "Content-Type": "application/json",
   };
   let body = JSON.stringify({
-    top_funnel: "Digital Marketing",
-    top_funnels_domains: "SEM",
+    top_funnel: data?.top_funnel || "",
+    top_funnels_domains: data?.top_funnels_domains || "",
     time: 8,
   });
 

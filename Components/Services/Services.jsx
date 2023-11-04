@@ -65,14 +65,14 @@ const Services = () => {
     setServiceModal(false);
   };
 
-  const handleProceed = async (data) => {
+  const handleProceedAllocation = async (time) => {
     let payload = {
       top_funnel: valueL1,
       top_funnels_domains: valueL2,
-      time: data,
+      time: time,
     };
 
-    let result = await api_getAllocation(payload);
+    let result = await api_getAllocation({ data: payload });
     if (result?.data?.body.length > 0) {
       setSessionStorageData("availableAllocation", result?.data?.body);
       handleCloseModal();
@@ -138,13 +138,16 @@ const Services = () => {
               </div>
               <div className={Styles.buttonIcon}>
                 <div
-                  onClick={() => handleProceed("8")}
+                  onClick={() => handleProceedAllocation(8)}
                   className={Styles.timeButton}
                 >
                   <span>Time Less then </span>
                   <span>8 Hours</span>
                 </div>
-                <div className={Styles.timeButton}>
+                <div
+                  onClick={() => handleProceedAllocation(9)}
+                  className={Styles.timeButton}
+                >
                   <span>Time More then </span>
                   <span>8 Hours</span>
                 </div>
