@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Styles from "../../Styles/FormData/UserForm.module.css";
 import { api_UpdateUser, api_UpdateUser2 } from "../../app/api/Authentication";
-import { api_CompanySize, api_fetchUtility } from "../../app/api/Communication";
+import {
+  api_CompanySize,
+  api_fetchUtility,
+  api_priceRange,
+} from "../../app/api/Communication";
 import Menu from "@mui/joy/Menu";
 import MenuButton from "@mui/joy/MenuButton";
 import MenuItem from "@mui/joy/MenuItem";
@@ -59,6 +63,9 @@ const FormInput1 = ({ router, selectedType }) => {
   const [removed, setRemoved] = useState([]);
   const [size, setSize] = useState([]);
 
+  const [priceRange, setPriceRange] = useState([]);
+  console.debug(priceRange);
+
   const handleSubmit = async () => {
     let payload = {
       user_type: selectedType,
@@ -89,6 +96,7 @@ const FormInput1 = ({ router, selectedType }) => {
   useEffect(() => {
     handleFetchService();
     handleFetchCompanySize();
+    handleFetchPriceRange();
   }, [utility]);
 
   const handleFetchCompanySize = async () => {
@@ -99,6 +107,10 @@ const FormInput1 = ({ router, selectedType }) => {
   const handleFetchService = async () => {
     let data = await api_fetchUtility();
     setSuggest(data?.data?.body);
+  };
+  const handleFetchPriceRange = async () => {
+    let data = await api_priceRange();
+    setPriceRange(data?.data?.body);
   };
 
   const handleselectSize = (ele) => {
@@ -172,14 +184,33 @@ const FormInput1 = ({ router, selectedType }) => {
         placeholder="Registration Code"
         onChange={(e) => setRegCode(e.target.value)}
       />
-      <input
+      {/* <input
         className={Styles.inputBox}
         onChange={(e) => setRevenue(e.target.value)}
         type="text"
         placeholder="Revenue"
         value={revenue}
-      />
+      /> */}
 
+      <div
+        style={{ marginLeft: "45px", marginBottom: "10px" }}
+        className={Styles.companySizeCont}
+      >
+        <div>Revenue :</div>
+        <Dropdown>
+          <MenuButton
+            style={{ color: "white" }}
+            className={Styles.companySizeBUtton}
+          >
+            {revenue || "Select Revenue"}
+          </MenuButton>
+          <Menu>
+            {priceRange?.map((ele) => (
+              <MenuItem onClick={() => setRevenue(ele)}>{ele}</MenuItem>
+            ))}
+          </Menu>
+        </Dropdown>
+      </div>
       <div className={Styles.companySizeCont}>
         <div>Company Size :</div>
         <Dropdown>

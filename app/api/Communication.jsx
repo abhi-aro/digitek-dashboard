@@ -37,6 +37,13 @@ export async function api_CompanySize() {
 
   return getApi(url, headers);
 }
+export async function api_priceRange() {
+  let url =
+    "https://q68elgriue.execute-api.ap-south-1.amazonaws.com/prod/price_range";
+  let headers = {};
+
+  return getApi(url, headers);
+}
 
 export async function api_getAllocation({ data }) {
   let url =
