@@ -49,7 +49,7 @@ export async function api_getAllocation({ data }) {
   let body = JSON.stringify({
     top_funnel: data?.top_funnel || "",
     top_funnels_domains: data?.top_funnels_domains || "",
-    time: 8,
+    time: data?.time,
   });
 
   return postApi(url, body, headers);

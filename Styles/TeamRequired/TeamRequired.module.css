@@ -24,6 +24,21 @@
   padding: 10px;
 }
 
+.selectionMsg {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 10px 0px;
+}
+
+.selectedNotSelected {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .proceedPayButton {
   height: 40px;
   width: 90%;
@@ -34,6 +49,19 @@
   color: white;
   font-size: 14px;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.proceedToPay {
+  height: 50px;
+  background-color: #1d1d1d;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-transform: uppercase;
+  font-weight: 600;
   cursor: pointer;
 }
 
