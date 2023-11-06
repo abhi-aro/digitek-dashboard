@@ -11,6 +11,7 @@ const TeamRequired = ({ router }) => {
   const [paymentModal, setPaymentModal] = useState(false);
   const [selected, setSelected] = useState("");
   const allocation = getSessionStorageData("availableAllocation");
+  const timePeriod = getSessionStorageData("timePeriod");
 
   const handlePayment = (data) => {
     setSessionStorageData("payData", data);
@@ -86,18 +87,10 @@ const TeamRequired = ({ router }) => {
                   <div className={Styles.layer22}>{data?.id}</div>
                 </div>
                 <div className={Styles.layer2}>
-                  <div className={Styles.layer21}>Position:</div>
-                  <div className={Styles.layer22}>{data?.position}</div>
-                </div>
-                <div className={Styles.layer2}>
                   <div className={Styles.layer21}>Experience:</div>
                   <div className={Styles.layer22}>
                     {data?.total_experiance} years
                   </div>
-                </div>
-                <div className={Styles.layer2}>
-                  <div className={Styles.layer21}>Level:</div>
-                  <div className={Styles.layer22}>{data?.level}</div>
                 </div>
                 <div className={Styles.borderBottomArea}></div>
                 <div className={Styles.layer2}>
@@ -107,14 +100,22 @@ const TeamRequired = ({ router }) => {
                   </div>
                 </div>
                 <div className={Styles.pricingHead}>Pricing:- </div>
-                <div className={Styles.layer2}>
-                  <div className={Styles.layer21}>Daily:</div>
-                  <div className={Styles.layer22}>₹{data?.cost_per_day}</div>
-                </div>
+                {timePeriod == 8 && (
+                  <div className={Styles.layer2}>
+                    <div className={Styles.layer21}>Daily:</div>
+                    <div className={Styles.layer22}>₹{data?.cost_per_day}</div>
+                  </div>
+                )}
                 <div className={Styles.layer2}>
                   <div className={Styles.layer21}>Monthly:</div>
                   <div className={Styles.layer22}>₹{data?.cost_per_month}</div>
                 </div>
+                {timePeriod > 8 && (
+                  <div className={Styles.layer2}>
+                    <div className={Styles.layer21}>Yearly:</div>
+                    <div className={Styles.layer22}>₹{data?.cost_per_day}</div>
+                  </div>
+                )}
                 {data.id === selected && (
                   <div
                     onClick={() => handlePayment(data)}

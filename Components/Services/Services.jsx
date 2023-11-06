@@ -75,6 +75,7 @@ const Services = () => {
     let result = await api_getAllocation({ data: payload });
     if (result?.data?.body.length > 0) {
       setSessionStorageData("availableAllocation", result?.data?.body);
+      setSessionStorageData("timePeriod", result?.data?.time);
       handleCloseModal();
       router.push(`/teamType/${valueL2}`);
     }

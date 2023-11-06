@@ -64,7 +64,6 @@ const FormInput1 = ({ router, selectedType }) => {
   const [size, setSize] = useState([]);
 
   const [priceRange, setPriceRange] = useState([]);
-  console.debug(priceRange);
 
   const handleSubmit = async () => {
     let payload = {
