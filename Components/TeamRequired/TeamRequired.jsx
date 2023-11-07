@@ -113,7 +113,7 @@ const TeamRequired = ({ router }) => {
                 {timePeriod > 8 && (
                   <div className={Styles.layer2}>
                     <div className={Styles.layer21}>Yearly:</div>
-                    <div className={Styles.layer22}>₹{data?.cost_per_day}</div>
+                    <div className={Styles.layer22}>₹{data?.cost_per_year}</div>
                   </div>
                 )}
                 {data.id === selected && (
