@@ -82,6 +82,11 @@
   height: 40px !important;
   padding: 10px 20px;
   margin-top: 20px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: rgb(45, 45, 45);
 }
 
 .serviceProviderSelector {

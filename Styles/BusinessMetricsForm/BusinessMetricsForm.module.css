@@ -37,6 +37,14 @@
   flex: 1;
 }
 
+.inputBox {
+  background-color: transparent;
+  width: 100%;
+  height: 40px;
+  border: 1px solid white;
+  font-size: 14px;
+}
+
 .input {
   flex: 1;
   outline: none;

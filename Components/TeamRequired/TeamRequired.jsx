@@ -86,6 +86,18 @@ const TeamRequired = ({ router }) => {
                   <div className={Styles.layer21}>ID:</div>
                   <div className={Styles.layer22}>{data?.id}</div>
                 </div>
+                {timePeriod == 8 && (
+                  <div className={Styles.layer2}>
+                    <div className={Styles.layer21}>Position:</div>
+                    <div className={Styles.layer22}>{data?.position}</div>
+                  </div>
+                )}
+                {timePeriod == 8 && (
+                  <div className={Styles.layer2}>
+                    <div className={Styles.layer21}>Level:</div>
+                    <div className={Styles.layer22}>{data?.level}</div>
+                  </div>
+                )}
                 <div className={Styles.layer2}>
                   <div className={Styles.layer21}>Experience:</div>
                   <div className={Styles.layer22}>
