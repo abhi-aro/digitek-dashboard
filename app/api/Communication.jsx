@@ -44,6 +44,13 @@ export async function api_priceRange() {
 
   return getApi(url, headers);
 }
+export async function api_CompanyType() {
+  let url =
+    "https://q68elgriue.execute-api.ap-south-1.amazonaws.com/prod/comapany_type_subtype";
+  let headers = {};
+
+  return getApi(url, headers);
+}
 
 export async function api_getAllocation({ data }) {
   let url =

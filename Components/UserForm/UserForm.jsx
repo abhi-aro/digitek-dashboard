@@ -3,6 +3,7 @@ import Styles from "../../Styles/FormData/UserForm.module.css";
 import { api_UpdateUser, api_UpdateUser2 } from "../../app/api/Authentication";
 import {
   api_CompanySize,
+  api_CompanyType,
   api_fetchUtility,
   api_priceRange,
 } from "../../app/api/Communication";
@@ -57,6 +58,11 @@ const FormInput1 = ({ router, selectedType }) => {
   const [curUtility, setCurUtility] = useState(false);
   const [show, setShow] = useState(false);
   const [utility, setUtility] = useState([]);
+
+  const [company, setCompany] = useState({});
+  const [companyType, setCompanyType] = useState([]);
+  const [companySubType, setCompanySubType] = useState([]);
+
   const [openModal, setOpenModal] = useState(false);
 
   const [suggest, setSuggest] = useState([]);
@@ -96,6 +102,7 @@ const FormInput1 = ({ router, selectedType }) => {
     handleFetchService();
     handleFetchCompanySize();
     handleFetchPriceRange();
+    handleCompany();
   }, [utility]);
 
   const handleFetchCompanySize = async () => {
@@ -110,6 +117,11 @@ const FormInput1 = ({ router, selectedType }) => {
   const handleFetchPriceRange = async () => {
     let data = await api_priceRange();
     setPriceRange(data?.data?.body);
+  };
+  const handleCompany = async () => {
+    let data = await api_CompanyType();
+    setCompany(data?.data?.body);
+    setCompanyType(Object.keys(data?.data?.body));
   };
 
   const handleselectSize = (ele) => {
@@ -138,6 +150,12 @@ const FormInput1 = ({ router, selectedType }) => {
     }
   };
 
+  const handleSelectCompany = (ele) => {
+    setCType(ele);
+    let data = company[ele];
+    setCompanySubType(data);
+  };
+
   return (
     <div className={Styles.formInputCOntainer}>
       <input
@@ -163,38 +181,49 @@ const FormInput1 = ({ router, selectedType }) => {
         onChange={(e) => setCName(e.target.value)}
         value={cName}
       />
-      <input
-        className={Styles.inputBox}
-        type="text"
-        placeholder="Company Type"
-        onChange={(e) => setCType(e.target.value)}
-        value={cType}
-      />
-      <input
-        className={Styles.inputBox}
-        type="text"
-        placeholder="Company Sub Type"
-        onChange={(e) => setCSType(e.target.value)}
-        value={csType}
-      />
+
       <input
         className={Styles.inputBox}
         type="text"
         placeholder="Registration Code"
         onChange={(e) => setRegCode(e.target.value)}
       />
-      {/* <input
-        className={Styles.inputBox}
-        onChange={(e) => setRevenue(e.target.value)}
-        type="text"
-        placeholder="Revenue"
-        value={revenue}
-      /> */}
 
-      <div
-        style={{ marginLeft: "45px", marginBottom: "10px" }}
-        className={Styles.companySizeCont}
-      >
+      <div className={Styles.companySizeCont}>
+        <div>Company Type :</div>
+        <Dropdown>
+          <MenuButton
+            style={{ color: "white" }}
+            className={Styles.companySizeBUtton}
+          >
+            {cType || "Select Company Type"}
+          </MenuButton>
+          <Menu sx={{ height: "400px", overflowY: "scroll" }}>
+            {companyType?.map((ele) => (
+              <MenuItem onClick={() => handleSelectCompany(ele)}>
+                {ele}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Dropdown>
+      </div>
+      <div className={Styles.companySizeCont}>
+        <div>Company Sub Type :</div>
+        <Dropdown>
+          <MenuButton
+            style={{ color: "white" }}
+            className={Styles.companySizeBUtton}
+          >
+            {csType || "Select Sub Type"}
+          </MenuButton>
+          <Menu sx={{ height: "400px", overflowY: "scroll" }}>
+            {companySubType?.map((ele) => (
+              <MenuItem onClick={() => setCSType(ele)}>{ele}</MenuItem>
+            ))}
+          </Menu>
+        </Dropdown>
+      </div>
+      <div className={Styles.companySizeCont}>
         <div>Revenue :</div>
         <Dropdown>
           <MenuButton
@@ -226,7 +255,7 @@ const FormInput1 = ({ router, selectedType }) => {
           </Menu>
         </Dropdown>
       </div>
-      <div className={Styles.companySizeCont2}>
+      <div className={Styles.companySizeCont}>
         <div>Select {selectedType === 1 ? "Services" : "Utility"} :</div>
         <Dropdown>
           <MenuButton
