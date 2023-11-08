@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import Styles from "../../Styles/FormData/UserForm.module.css";
 import { api_UpdateUser, api_UpdateUser2 } from "../../app/api/Authentication";
 import {
@@ -18,6 +19,7 @@ import Box from "@mui/material/Box";
 
 const UserForm = ({ data, router }) => {
   const [selectedType, setSelectedType] = useState(0);
+  const { data: session } = useSession();
   return (
     <>
       <div className={Styles.mainContainer}>
@@ -39,16 +41,20 @@ const UserForm = ({ data, router }) => {
             I am a service provider
           </div>
         </div>
-        <FormInput1 router={router} selectedType={selectedType} />
+        <FormInput1
+          router={router}
+          selectedType={selectedType}
+          session={session}
+        />
       </div>
     </>
   );
 };
 
-const FormInput1 = ({ router, selectedType }) => {
+const FormInput1 = ({ router, selectedType, session }) => {
   const [pNumber, setPNumber] = useState("");
   const [countryCode, setCOuntryCode] = useState("+91");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(session?.user?.email || "");
   const [cName, setCName] = useState("");
   const [cType, setCType] = useState("");
   const [csType, setCSType] = useState("");
@@ -173,6 +179,7 @@ const FormInput1 = ({ router, selectedType }) => {
         type="text"
         placeholder="Email"
         value={email}
+        disabled={true}
       />
       <input
         className={Styles.inputBox}
