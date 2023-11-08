@@ -1,0 +1,38 @@
+.accMainContainer {
+  padding: 20px;
+  width: 100%;
+  background-color: #343540;
+  height: 85vh;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detailsHead {
+  font-size: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.det1Main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.det1Head1 {
+  font-size: 20px;
+  text-transform: uppercase;
+  color: rgb(218, 218, 218);
+}
+
+.det1Head2 {
+  font-size: 18px;
+  color: rgb(168, 168, 168);
+}
