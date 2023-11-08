@@ -75,9 +75,9 @@ export async function api_BusinessMetricForm({ data }) {
     "Content-Type": "application/json",
   };
   let body = JSON.stringify({
-    customer_acquisition_cost_: data?.customer_acquisition_cost_,
-    customer_lifetime_value_: data?.customer_lifetime_value_,
-    average_order_value_: data?.average_order_value_,
+    customer_acquisition_cost: data?.customer_acquisition_cost_,
+    customer_lifetime_value: data?.customer_lifetime_value_,
+    average_order_value: data?.average_order_value_,
     gross_margin: data?.gross_margin,
     net_promoter_score: data?.net_promoter_score,
     abandoned_cart_rate: data?.abandoned_cart_rate,

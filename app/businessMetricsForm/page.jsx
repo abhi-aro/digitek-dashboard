@@ -169,7 +169,7 @@ const BusinessMetricsForm = () => {
           value={user_traffic}
           onChange={(e) => setuser_traffic(e.target.value)}
           type="text"
-          placeholder="User traffic"
+          placeholder="User traffic - Monthly"
         />
         <input
           className={Styles.inputBox}
