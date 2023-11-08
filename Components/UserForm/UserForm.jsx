@@ -98,9 +98,9 @@ const FormInput1 = ({ router, selectedType, session }) => {
       }
     } else {
       const response = await api_UpdateUser2({ data: payload });
-      if (response?.data?.body?.stage === 1) {
-        router.push("/");
-      }
+      // if (response?.data?.body?.stage === 1) {
+      router.push("/");
+      // }
     }
   };
 
