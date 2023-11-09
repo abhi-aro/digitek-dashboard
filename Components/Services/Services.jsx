@@ -139,18 +139,38 @@ const Services = () => {
               </div>
               <div className={Styles.buttonIcon}>
                 <div
-                  onClick={() => handleProceedAllocation(8)}
-                  className={Styles.timeButton}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                    alignItems: "center",
+                  }}
                 >
-                  <span>Time Less then </span>
-                  <span>8 Hours</span>
+                  <div>Shared Resource</div>
+                  <div
+                    onClick={() => handleProceedAllocation(8)}
+                    className={Styles.timeButton}
+                  >
+                    <span>Time Less then </span>
+                    <span>8 Hours</span>
+                  </div>
                 </div>
                 <div
-                  onClick={() => handleProceedAllocation(9)}
-                  className={Styles.timeButton}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                    alignItems: "center",
+                  }}
                 >
-                  <span>Time More then </span>
-                  <span>8 Hours</span>
+                  <div>Dedicated Resource</div>
+                  <div
+                    onClick={() => handleProceedAllocation(9)}
+                    className={Styles.timeButton}
+                  >
+                    <span>Time More then </span>
+                    <span>8 Hours</span>
+                  </div>
                 </div>
               </div>
             </div>

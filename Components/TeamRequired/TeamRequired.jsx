@@ -15,7 +15,7 @@ const TeamRequired = ({ router }) => {
 
   const handlePayment = (data) => {
     setSessionStorageData("payData", data);
-    router2.push("/payment");
+    router2.push("/thankyou");
   };
 
   const handleSelected = (ele) => {
