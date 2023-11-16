@@ -144,15 +144,16 @@ const Services = () => {
                     flexDirection: "column",
                     gap: "10px",
                     alignItems: "center",
+                    width: "45%",
                   }}
                 >
-                  <div>Shared Resource</div>
+                  <div style={{ textAlign: "center" }}>Shared Resource</div>
                   <div
                     onClick={() => handleProceedAllocation(8)}
                     className={Styles.timeButton}
                   >
-                    <span>Time Less then </span>
-                    <span>8 Hours</span>
+                    <span style={{ textAlign: "center" }}>Time Less then </span>
+                    <span style={{ textAlign: "center" }}>8 Hours</span>
                   </div>
                 </div>
                 <div
@@ -161,15 +162,16 @@ const Services = () => {
                     flexDirection: "column",
                     gap: "10px",
                     alignItems: "center",
+                    width: "45%",
                   }}
                 >
-                  <div>Dedicated Resource</div>
+                  <div style={{ textAlign: "center" }}>Dedicated Resource</div>
                   <div
                     onClick={() => handleProceedAllocation(9)}
                     className={Styles.timeButton}
                   >
-                    <span>Time More then </span>
-                    <span>8 Hours</span>
+                    <span style={{ textAlign: "center" }}>Time More then </span>
+                    <span style={{ textAlign: "center" }}>8 Hours</span>
                   </div>
                 </div>
               </div>
