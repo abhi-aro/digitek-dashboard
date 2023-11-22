@@ -77,7 +77,8 @@ const Services = () => {
       setSessionStorageData("availableAllocation", result?.data?.body);
       setSessionStorageData("timePeriod", result?.data?.time);
       handleCloseModal();
-      router.push(`/teamType/${valueL2}`);
+      router.push(`language`);
+      // router.push(`/teamType/${valueL2}`);
     }
   };
 
