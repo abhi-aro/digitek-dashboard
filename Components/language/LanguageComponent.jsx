@@ -49,7 +49,7 @@ const LanguageComponent = () => {
       </div>
       {selectLangauage?.trim().length > 0 && (
         <div onClick={handleProceed} className={Styles.proceedPay}>
-          Proceed to Pay
+          DialX
         </div>
       )}
     </div>

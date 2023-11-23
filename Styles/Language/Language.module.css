@@ -46,8 +46,10 @@
 }
 
 .proceedPay {
+  color: black;
+  font-weight: 600;
   height: 50px;
-  background-color: #343540;
+  background-color: #828cff;
   border-radius: 12px;
   padding: 10px 20px;
   display: flex;
