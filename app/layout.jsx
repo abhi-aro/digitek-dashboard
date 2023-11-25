@@ -26,9 +26,6 @@ export default async function RootLayout({ children }) {
               <Menu />
             </div>
             <div className="layoutContent">{children}</div>
-            <div className="layoutServices">
-              <Services />
-            </div>
           </div>
         </Provider>
       </body>

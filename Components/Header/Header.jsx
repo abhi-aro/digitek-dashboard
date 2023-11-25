@@ -41,12 +41,12 @@ const Header = () => {
           setOpened={setMenuOpened}
           toggleOpened={toggleMenu}
         />
-        <MenuIcon
+        {/* <MenuIcon
           type={"service"}
           opened={servicesOpened}
           setOpened={setServicesOpened}
           toggleOpened={toggleServices}
-        />
+        /> */}
       </div>
     </div>
   );

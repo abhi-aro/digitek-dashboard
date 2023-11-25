@@ -7,6 +7,7 @@ import Styles from "../../Styles/HomePage/Index.module.css";
 import Sponsered from "./Sponsered";
 import { useInView } from "react-intersection-observer";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
+import HomeService from "../../Components/Services/HomeService";
 
 const Index = () => {
   const videoSrc = "/Video/Intro/clideo_digitek-process.mp4";
@@ -19,10 +20,11 @@ const Index = () => {
   });
   return (
     <div className={Styles.container}>
+      <HomeService />
       <div className={Styles.feedWrapper}>
-        <div ref={vidContainerRef}>
+        {/* <div ref={vidContainerRef}>
           <VideoPlayer src={videoSrc} videoRef={videoRef} />
-        </div>
+        </div> */}
         {/* <Feed />
 				<Shop /> */}
       </div>
